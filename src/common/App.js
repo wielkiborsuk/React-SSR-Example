@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { SearchResults, Header } from '@components';
+import { Route, Switch } from 'react-router-dom';
 
 class App extends Component {
     render() {
@@ -9,10 +10,14 @@ class App extends Component {
                     React SSR and Router v4 example.
                 </p>
                 <hr />
-                <Header>
-                    <h1>Search results</h1>
-                </Header>
-                <SearchResults queryData={this.props.data} />
+                <Switch>
+                  <Route path="/" >
+                    <Header>
+                        <h1>Search results</h1>
+                    </Header>
+                    <SearchResults queryData={this.props.data} />
+                  </Route>
+                </Switch>
             </div>
         )
     }

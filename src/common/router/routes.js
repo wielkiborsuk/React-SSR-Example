@@ -42,3 +42,9 @@
 
     Good luck!
 */
+
+export default const routes = [
+  '/',
+  '/summary',
+  '/about'
+];

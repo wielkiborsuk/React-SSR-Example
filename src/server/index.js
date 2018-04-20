@@ -15,7 +15,7 @@ app.use(cors());
 
 app.use(express.static('dist'));
 
-app.get('*', (req, res, next) => {
+app.get('/', (req, res, next) => {
     const { APP_TITLE, BUNDLE_PATH, DEFAULT_LOCATION } = constants;
     const sheet = new ServerStyleSheet();
 
@@ -26,6 +26,16 @@ app.get('*', (req, res, next) => {
             const styles = sheet.getStyleTags();
             res.send(Html(APP_TITLE, BUNDLE_PATH, jsonData, styles, markup));
         });
+})
+
+app.get('/about', (req, res, next) => {
+  const { APP_TITLE, BUNDLE_PATH, DEFAULT_LOCATION } = constants;
+  const sheet = new ServerStyleSheet();
+  const jsonData = {};
+
+  const markup = renderToString(sheet.collectStyles(<BrowserRouter><App data={jsonData}/></BrowserRouter>));
+  const styles = sheet.getStyleTags();
+  res.send(Html(APP_TITLE, BUNDLE_PATH, jsonData, styles, markup));
 })
 
 app.listen(3000, () => {
